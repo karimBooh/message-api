@@ -3,8 +3,9 @@
 ## Description
 
 - [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-- PostgreSQL dd
-##Swagger
+- PostgreSQL db
+
+## Swagger
 Swagger enable in localhost:3000/api
 
 To use message endpoint you need to be connected, 
@@ -12,7 +13,7 @@ Signup then login and add access_token to the Authorize button at the top right 
 
 Enjoy
 
-#Features
+## Features
 - send message
 - read message
 - delete message
