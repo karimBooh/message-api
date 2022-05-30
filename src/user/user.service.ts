@@ -56,12 +56,12 @@ export class UserService {
       .createQueryBuilder('user')
       .where({ id: user.id })
       .getOneOrFail()
-      .catch((error) => {
+      .catch(() => {
         throw new ForbiddenException();
       });
 
-    const userDate = new Date(user.lastDisconnect);
-    if (usr.lastDisconnect.toString() != userDate.toString()) {
+    const userDate = user.lastDisconnect ? new Date(user.lastDisconnect) : null;
+    if (usr.lastDisconnect?.toString() != userDate?.toString()) {
       throw new ForbiddenException();
     }
 

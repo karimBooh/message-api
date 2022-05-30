@@ -63,7 +63,7 @@ export class MessageService {
       .createQueryBuilder('message')
       .leftJoinAndSelect('message.seenByUser', 'seen')
       .leftJoinAndSelect('message.createBy', 'user')
-      .where('user.id = :id', { id: id })
+      .where('user.id = :id AND message.deleted = false', { id: id })
       .getMany()
       .catch(() => {
         throw new BadRequestException('Message not found');
@@ -105,7 +105,7 @@ export class MessageService {
   async updateSeenMessage(messageId: number, user: User): Promise<Message> {
     const message = await this.messageRepository
       .createQueryBuilder('message')
-      .where({ id: messageId })
+      .where({ id: messageId, deleted: false })
       .leftJoinAndSelect('message.seenByUser', 'user')
       .getOneOrFail()
       .catch(() => {
